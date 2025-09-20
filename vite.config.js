@@ -7,6 +7,11 @@ const locals = { name: 'components' }
 export default defineConfig({
   plugins: [pugPlugin(locals)],
   build: {
+    lib: {
+      entry: resolve(__dirname, 'index.html'),
+      fileName: 'app',
+      formats: ['es']
+    },
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html')
