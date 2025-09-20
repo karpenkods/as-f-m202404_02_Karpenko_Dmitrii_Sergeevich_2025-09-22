@@ -1,0 +1,11 @@
+@use './mixins' as *;
+
+.template {
+  display: flex;
+}
+
+@include breakpoint(md) {
+}
+
+@include breakpoint(sm) {
+}
