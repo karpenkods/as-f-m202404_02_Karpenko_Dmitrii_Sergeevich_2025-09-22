@@ -14,10 +14,10 @@
 
 
 ***
-Сайт: 
+Сайт: https://test-task-business-technologies.vercel.app
 
 ***
-Код: 
+Код: https://github.com/karpenkods/test-task-business-technologies
 
 ***
 Форматирование кода: npm run prettier

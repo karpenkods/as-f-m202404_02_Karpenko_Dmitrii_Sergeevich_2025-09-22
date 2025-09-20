@@ -12,11 +12,10 @@
     "upgrade": "npm-upgrade"
   },
   "devDependencies": {
+    "npm-upgrade": "^3.1.2",
     "prettier": "^3.6.2",
     "sass": "^1.93.0",
     "vite": "^7.1.6",
-    "vite-plugin-pug": "^0.4.1",
-    "npm-upgrade": "^3.1.2"
-  },
-  "dependencies": {}
+    "vite-plugin-pug": "^0.4.1"
+  }
 }
