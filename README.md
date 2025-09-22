@@ -1,4 +1,4 @@
-## Тестовое задание: "test"
+## Тестовое задание: "TreeRender"
 
 ***
 Как посмотреть/запустить проект:
@@ -18,6 +18,9 @@
 
 ***
 Код: https://github.com/karpenkods/test-task-business-technologies
+
+***
+Тестирование кода описано в файле TEST.md
 
 ***
 Форматирование кода: npm run prettier

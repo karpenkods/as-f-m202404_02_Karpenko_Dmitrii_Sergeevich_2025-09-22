@@ -1,0 +1,39 @@
+@use './mixins' as *;
+
+.header {
+  width: 100%;
+  padding: 1.6rem 0;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background: linear-gradient(0deg, #667eea 0%, #764ba2 100%);
+
+  &__title {
+    font-size: 4.6rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@include breakpoint(md) {
+  .header {
+    padding: 1.2rem 0;
+
+    &__title {
+      font-size: 3.2rem;
+    }
+  }
+}
+
+@include breakpoint(sm) {
+  .header {
+    padding: 0.8rem 0;
+
+    &__title {
+      font-size: 2.4rem;
+    }
+  }
+}

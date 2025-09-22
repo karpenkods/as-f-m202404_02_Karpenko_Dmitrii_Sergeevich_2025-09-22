@@ -1,10 +1,13 @@
 @use './mixins' as *;
 
 :root {
-  --font-family: 'Montserrat', sans-serif;
+  --font-family: 'Montserrat';
 
   --black: #1c1c1c;
   --white: #fff;
+  --red: #e83e8c;
+  --err: #f8d7da;
+  --scroll: #5603aa;
 
   --time: ease-in-out 0.3s;
 }
@@ -39,9 +42,10 @@ body {
   min-height: 100vh;
   background-color: var(--white);
   color: var(--black);
-  font-family: var(--font-family), sans-serif;
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 1.8rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   @include stylized-scrollbar();
   -webkit-tap-highlight-color: transparent;
 }
@@ -132,7 +136,7 @@ button {
   width: fit-content;
   border: none;
   outline: none;
-  font-family: var(--font-family), sans-serif;
+  font-family: var(--font-family);
   font-weight: 600;
   font-size: 1.6rem;
   line-height: normal;
@@ -143,7 +147,7 @@ button {
 .main {
   position: relative;
   flex-grow: 1;
-  margin: 10rem 0;
+  margin: 16rem 0;
 }
 
 .container {
@@ -153,33 +157,28 @@ button {
   padding: 0 8rem;
   display: flex;
   flex-direction: column;
-  gap: 12rem;
+  gap: 6rem;
 }
 
 @include breakpoint(md) {
   .main {
-    margin: 6rem 0;
+    margin: 10rem 0;
   }
 
   .container {
     max-width: 100%;
     padding: 0 4rem;
-    gap: 8rem;
+    gap: 6rem;
   }
 }
 
 @include breakpoint(sm) {
-  button {
-    width: 100%;
-    max-width: 45rem;
-  }
-
   .main {
-    margin: 4rem 0;
+    margin: 8rem 0;
   }
 
   .container {
     padding: 0 2rem;
-    gap: 6rem;
+    gap: 8rem;
   }
 }

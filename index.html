@@ -8,19 +8,39 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png" />
     <link rel="manifest" href="../assets/icons/site.webmanifest" />
-    <title>test</title>
-    <meta name="description" content="test on Monday" />
+    <title>TreeRender</title>
+    <meta name="description" content="TreeRender" />
   </head>
   <body>
     <main class="main">
+      <header class="header">
+        <h1 class="header__title">TreeRender</h1>
+      </header>
       <div class="container">
-        <h1 class="js-heading heading">Test head</h1>
-        <p class="text">Test</p>
+        <section class="input">
+          <label for="tree-input" class="input__label"
+            >Введите текстовое определение дерева (например: <code class="input__code">(10 (5 (25) 108 9) 3)</code>):</label
+          >
+          <code class="input__code-mobile">(10 (5 (25) 108 9) 3)</code>
+          <textarea id="tree-input" class="input__textarea" placeholder="Начните писать..." rows="3" maxlength="200"></textarea>
+          <button id="render-btn" class="input__button">Отрисовать</button>
+        </section>
+
+        <section class="output">
+          <div class="output__field">
+            <pre id="tree-output" class="output__tree"></pre>
+          </div>
+          <div id="error-message" class="error hidden"></div>
+        </section>
       </div>
     </main>
     <script type="module" defer src="./src/app.js"></script>
     <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      window.va =
+        window.va ||
+        function () {
+          ;(window.vaq = window.vaq || []).push(arguments)
+        }
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
   </body>

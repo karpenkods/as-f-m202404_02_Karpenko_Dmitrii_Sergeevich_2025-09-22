@@ -7,7 +7,7 @@
     height: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--black);
+    background-color:  var(--scroll);
     height: 20%;
     border-radius: 2px;
   }
@@ -38,4 +38,42 @@
       @content;
     }
   }
+}
+
+/* Скроллбар для дерева */
+.tree-display::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tree-display::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.tree-display::-webkit-scrollbar-thumb {
+    background: var(--scroll);
+    border-radius: 4px;
+}
+
+.tree-display::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll);
+}
+
+/* Скроллбар для дерева */
+.tree-display::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tree-display::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.tree-display::-webkit-scrollbar-thumb {
+    background: var(--scroll);
+    border-radius: 4px;
+}
+
+.tree-display::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll);
 }

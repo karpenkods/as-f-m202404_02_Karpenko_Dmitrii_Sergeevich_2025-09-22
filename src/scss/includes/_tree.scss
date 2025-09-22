@@ -1,0 +1,168 @@
+@use './mixins' as *;
+
+.input {
+  &__label {
+    display: flex;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+
+  &__code {
+    margin: 0 0.2rem 0 0.4rem;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0.1rem;
+    border-radius: 0.4rem;
+    color: var(--red);
+    &-mobile {
+      display: none;
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    min-height: 10rem;
+    margin-bottom: 1.6rem;
+    padding: 1.6rem;
+    border: 2px solid var(--white);
+    border-radius: 0.8rem;
+    font-size: 1.8rem;
+    resize: none;
+    transition: var(--time);
+    &:focus {
+      outline: none;
+      border: 2px solid var(--scroll);
+    }
+  }
+
+  &__button {
+    background: var(--scroll);
+    color: white;
+    border: none;
+    padding: 1.6rem 2.4rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: var(--time);
+    &:hover {
+      background: var(--black);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+  }
+}
+
+.output {
+  position: relative;
+  border-top: 2px solid var(--white);
+  padding-top: 3rem;
+
+  &__field {
+    background: var(--white);
+    border-radius: 0.8rem;
+    padding: 1.6rem;
+    border: 1px solid var(--white);
+  }
+
+  &__tree {
+    tab-size: 4;
+    line-height: 1.4;
+    color: var(--black);
+    white-space: pre;
+    overflow-x: auto;
+    background: var(--white);
+    padding: 1.6rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    min-height: 20rem;
+    &:empty::before {
+      content: "Дерево будет отображено здесь после нажатия кнопки 'Отрисовать'";
+      color: var(--black);
+      opacity: 0.6;
+    }
+  }
+}
+
+.error {
+  width: 100%;
+  position: absolute;
+  bottom: -6rem;
+  background: var(--err);
+  color: var(--red);
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none;
+}
+
+@include breakpoint(md) {
+  .input {
+    &__label {
+      font-size: 1.6rem;
+    }
+
+    &__textarea {
+      font-size: 1.6rem;
+    }
+  }
+
+  .output {
+    &__tree {
+      font-size: 1.6rem;
+      &:empty::before {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .error {
+    bottom: -7rem;
+  }
+}
+
+@include breakpoint(sm) {
+  .input {
+    &__label {
+      margin-bottom: 0.8rem;
+    }
+    &__code {
+      display: none;
+      &-mobile {
+        width: fit-content;
+        display: block;
+        margin: 0 0.4rem 1.2rem 0.4rem;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 0.1rem;
+        border-radius: 0.4rem;
+        color: var(--red);
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .output {
+    position: relative;
+    border-top: 2px solid var(--white);
+    padding-top: 3rem;
+
+    &__field {
+      background: var(--white);
+      border-radius: 0.8rem;
+      padding: 1.6rem;
+      border: 1px solid var(--white);
+    }
+
+    &__tree {
+      &:empty::before {
+        content: 'Дерево будет отображено здесь';
+      }
+    }
+  }
+
+  .error {
+    font-size: 1.6rem;
+    bottom: -9rem;
+  }
+}

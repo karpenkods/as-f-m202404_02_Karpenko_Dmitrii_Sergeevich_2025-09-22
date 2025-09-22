@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "tree-render",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -7,15 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
     "prettier": "prettier --write **/*.{js,json,html,scss}",
     "prettier-dist": "prettier --write dist/*.html",
     "upgrade": "npm-upgrade"
   },
   "devDependencies": {
+    "jsdom": "^27.0.0",
     "npm-upgrade": "^3.1.2",
     "prettier": "^3.6.2",
     "sass": "^1.93.0",
     "vite": "^7.1.6",
-    "vite-plugin-pug": "^0.4.1"
+    "vitest": "^3.2.4"
   }
 }
