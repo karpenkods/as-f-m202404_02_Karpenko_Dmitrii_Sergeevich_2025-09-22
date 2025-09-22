@@ -14,10 +14,10 @@
 
 
 ***
-Сайт: https://test-task-business-technologies.vercel.app
+Сайт: https://as-f-m202404-02-karpenko-dmitrii-sergeevich-2025-09-74ev7ke9g.vercel.app
 
 ***
-Код: https://github.com/karpenkods/test-task-business-technologies
+Код: https://github.com/karpenkods/as-f-m202404_02_Karpenko_Dmitrii_Sergeevich_2025-09-22
 
 ***
 Тестирование кода описано в файле TEST.md
