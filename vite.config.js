@@ -4,6 +4,11 @@ import { defineConfig } from 'vite'
 const locals = { name: 'components' }
 
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true
+  },
+  
   build: {
     lib: {
       entry: resolve(__dirname, 'index.html'),
