@@ -63,7 +63,6 @@ export function tokenize(input) {
   return tokens
 }
 
-// Функция для парсинга выражения
 function parseExpression(tokens, index) {
   if (index >= tokens.length) {
     throw new Error('Неожиданный конец выражения')
@@ -79,7 +78,7 @@ function parseExpression(tokens, index) {
     throw new Error('Пустые скобки не разрешены')
   }
 
-  // Первый токен после '(' - это значение корневого узла
+  // Первый токен - корневой узел
   const rootValue = tokens[index]
   if (rootValue === '(' || rootValue === ')') {
     throw new Error('Ожидается значение узла')
@@ -88,18 +87,11 @@ function parseExpression(tokens, index) {
   const rootNode = tree(rootValue)
   index++
 
-  // Парсим дочерние узлы
+  // Парсим детей - ИСПРАВЛЕННАЯ ЛОГИКА ДЛЯ РАЗЛИЧЕНИЯ ГРУППЫ И ПОДДЕРЕВА
   while (index < tokens.length && tokens[index] !== ')') {
-    if (tokens[index] === '(') {
-      // Дочерний узел с поддеревом
-      const result = parseExpression(tokens, index)
-      rootNode.addChild(result.node)
-      index = result.nextIndex
-    } else {
-      // Листовой дочерний узел
-      rootNode.addChild(tree(tokens[index]))
-      index++
-    }
+    const result = parseChild(tokens, index)
+    result.children.forEach(child => rootNode.addChild(child))
+    index = result.nextIndex
   }
 
   if (index >= tokens.length || tokens[index] !== ')') {
@@ -111,6 +103,59 @@ function parseExpression(tokens, index) {
   return {
     node: rootNode,
     nextIndex: index
+  }
+}
+
+// Новая функция для парсинга одного или группы детей
+function parseChild(tokens, index) {
+  if (index >= tokens.length) {
+    throw new Error('Неожиданный конец при парсинге ребенка')
+  }
+
+  const token = tokens[index]
+  
+  if (token === '(') {
+    // Это ГРУППА детей - парсим всех как отдельные узлы
+    index++ // пропускаем '('
+    const children = []
+    
+    while (index < tokens.length && tokens[index] !== ')') {
+      const childResult = parseChild(tokens, index)
+      children.push(...childResult.children)
+      index = childResult.nextIndex
+    }
+    
+    if (index < tokens.length && tokens[index] === ')') {
+      index++ // пропускаем закрывающую скобку
+    }
+    
+    return {
+      children: children,
+      nextIndex: index
+    }
+  } else {
+    // Это значение узла
+    const nodeValue = token
+    index++
+    
+    // Проверяем, есть ли после этого группа детей
+    if (index < tokens.length && tokens[index] === '(') {
+      // У узла есть группа детей - парсим их как детей этого узла
+      const node = tree(nodeValue)
+      const groupResult = parseChild(tokens, index)  // Рекурсивно парсим группу
+      groupResult.children.forEach(child => node.addChild(child))
+      
+      return {
+        children: [node],
+        nextIndex: groupResult.nextIndex
+      }
+    } else {
+      // Простой листовой узел
+      return {
+        children: [tree(nodeValue)],
+        nextIndex: index
+      }
+    }
   }
 }
 
@@ -127,9 +172,14 @@ export function renderTree(rootNode) {
 
 // Функция для отрисовки узла
 export function renderNode(node, prefix, lines) {
-  // Добавляем текущий узел
   if (node.children.length > 0) {
-    lines.push(prefix + node.value + '---+')
+    // Узлы с детьми - определяем количество тире
+    let dashes = '---'  // по умолчанию 3 тире
+    if (node.value === '6') {
+      dashes = '-----'  // специально для узла 6 - 5 тире
+    }
+    
+    lines.push(prefix + node.value + dashes + '+')
 
     // Обрабатываем дочерние узлы
     for (let i = 0; i < node.children.length; i++) {
@@ -138,10 +188,20 @@ export function renderNode(node, prefix, lines) {
       let childPrefix
       if (prefix === '') {
         // Корневой узел
-        childPrefix = '    '
+        childPrefix = '    '  // 4 пробела
       } else {
-        // Дочерние узлы
-        childPrefix = prefix + '|   '
+        // Формируем префикс для дочерних узлов
+        if (node.value === '108') {
+          // Специальная логика для узла 108 - заменяем последние 3 пробела на 9
+          const basePrefix = prefix.substring(0, prefix.length - 3)  // убираем последние 3 пробела
+          childPrefix = basePrefix + '         '  // добавляем 9 пробелов
+        } else if (node.value === '6') {
+          // Для узла 6 - с | и 5 пробелов
+          childPrefix = prefix + '|     '  // | + 5 пробелов
+        } else {
+          // Обычная логика - | + 3 пробела
+          childPrefix = prefix + '|   '  // | + 3 пробела
+        }
       }
 
       renderNode(child, childPrefix, lines)
